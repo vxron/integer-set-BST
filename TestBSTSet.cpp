@@ -197,6 +197,7 @@ void TestBSTSet::testAdd(double& total, double& full)
 
 void TestBSTSet::testRemove(double& total, double& full)
 {
+	//#if 0
 	/*
 	Three main test cases for remove (2 marks each subcase, total 6 marks)
 	1. do nothing in an empty set
@@ -253,6 +254,7 @@ void TestBSTSet::testRemove(double& total, double& full)
 
 	total += totalMark;
 	full += markSum;
+	//#endif
 }
 
 void TestBSTSet::testUnion(double& total, double& full)

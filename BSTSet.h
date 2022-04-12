@@ -18,7 +18,7 @@ public:
 	~BSTSet();
 
 	// required methods
-	bool isIn(int v);
+	bool isIn(int v)const;
 	void add(int v);
 	bool remove(int v);
 	void Union(const BSTSet& s);
@@ -27,6 +27,8 @@ public:
 	int size();
 	int height();
 	void printNonRec(); // create and use class MyStack
+	TNode* find_min(TNode* T);
+	int find_max(TNode* T);
 
 	// provided recursive print method
 	void printBSTSet();
