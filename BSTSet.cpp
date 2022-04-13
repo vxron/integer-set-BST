@@ -158,7 +158,6 @@ int BSTSet::find_max(TNode* T){
 }
 
 // checks if it's there, then removes it
-// use recursion hbb
 bool BSTSet::remove(int v)
 {
 
@@ -368,11 +367,6 @@ void BSTSet::Union(const BSTSet& s)
 
 	}
 
-	// insert everything from one into the other
-
-
-	// could use recursion
-	// maybe just use list -> use some type of traversal
 }
 
 // repeated add + remove
@@ -407,7 +401,6 @@ void BSTSet::intersection(const BSTSet& s)
 	// remove all elements that dont have a counterpart in the other and vice versa
 	// then union the remaining
 
-	//*this=tmp;
 	delete root;
 	root=tmp.root;
 	tmp.root=NULL;
@@ -417,44 +410,6 @@ void BSTSet::intersection(const BSTSet& s)
 void BSTSet::difference(const BSTSet& s)
 {
 	// remove everything in A that's also in B
-	// do lists again
-	MyStack stack;
-
-	BSTSet tmp;
-		// iterate through YOUR stuff and for each thing, see if it exists in s
-		// add to temporary tree
-
-	TNode* T = root;
-
-	/*
-	while(T!=NULL || !stack.empty()){
-		while(T!=NULL){
-			stack.push_back(T);
-			T=T->left;
-		}
-
-		// T must be null at this point, meaning we take from stack
-		T = stack.back();
-		stack.pop_back();
-		if(s.isIn(T->element)==true){
-			// REMOVE
-			tmp.remove(T->element);
-		}
-
-		// traverse right tree
-		T=T->right;
-
-	}
-
-	// remove all elements that dont have a counterpart in the other and vice versa
-	// then union the remaining
-
-	//*this=tmp;
-	delete root;
-	root=tmp.root;
-	tmp.root=NULL;
-	*/
-
 }
 
 // traverse in order (left -> middle -> right)
@@ -474,8 +429,6 @@ int BSTSet::size()
 
 	MyStack stack; // holds all the nodes that come before the node you're currently at
 
-	// push root into stack
-	//stack.push_back(T);
 
 	// if T is NULL, we've reached the end of a subtree, but if there's something in the stack, we still have anotha one to traverse
 	// if stack is empty but T is not NULL, we still have things to traverse in the given subtree
@@ -495,12 +448,6 @@ int BSTSet::size()
 		T=T->right;
 
 	}
-	// count elements on LEFT SUBTREE RECURSIVELY
-	// if it's null, it skips over and we still have size=1 from root above
-
-	// reset T to root
-
-	// count elements on RIGHT SUBTREE RECURSIVELY
 
     return size;
 }
@@ -518,11 +465,9 @@ int BSTSet::height()
 {
 	// height is length of longest path (counting branches) from root to leaf
 	// height starts at 0 (height at root is 0)
-
 	return getHeight(root)-1;
 
 }
-
 
 
 // create and use class MyStack, in order traversal
@@ -559,43 +504,9 @@ void BSTSet::printNonRec()
 	}
 
 	// if (root->left) is there (i.e. any node has a left element), push root onto stack and move to root->left
-
 	// if root->left is NULL, print root->element and pop from stack, move towards right root->right
-
 	// stop if stack is empty (no more root to look at)
 }
-
-// Do not modify following provided methods
-
-/*
-
-
-	// do a post order traversal using stack class (vector), then delete nodes sequentially
-	// dont want to delete root --> need to keep that reference till the end!
-	// push root first, so that we can pop it last
-	stack.push_back(root);
-	TNode* T = root;
-	TNode* n = NULL;
-
-	while(T!=NULL || !stack.empty()){
-		if(T!=NULL){
-			stack.push_back(T);
-			T=T->left;
-		}
-		else{
-			// assign top of stack to topmost
-			TNode* topmost = stack.back();
-			// check if topmost right is not null
-			if(topmost->right!=NULL && n!=topmost->right){
-				T=topmost->right;
-			}
-			else{
-				delete topmost;
-			}
-		}
-
-	}
-	*/
 
 void BSTSet::printBSTSet()
 {
