@@ -197,13 +197,17 @@ bool BSTSet::remove(int v)
 	// when we break, T is the node which we are trying to remove
 	// we also kept a reference to the previous node, prev
 
+
+
 	// case I: leaf node
 	if(T->left==NULL && T->right==NULL){
 
 		//printBSTSet();
+
 		// special case where we only have 1 node, root
 		if(T==root){
 			root=NULL;
+			return true;
 		}
 
 		// fix link from prev
@@ -260,7 +264,19 @@ bool BSTSet::remove(int v)
 
 	// case III: node w 1 child on RIGHT
 	else{
-		if(T->left!=NULL){
+
+		if(T==root){
+			if(T->left!=NULL){
+				// there's a left element
+				root=T->left;
+			}
+			else{
+				// there's a right element
+				root=T->right;
+			}
+		}
+
+		else if(T->left!=NULL){
 			// there's a left element (child)
 			if(prev->right==T){
 				// T is to the right of previous, so child must be to the right of previous
@@ -402,6 +418,42 @@ void BSTSet::difference(const BSTSet& s)
 {
 	// remove everything in A that's also in B
 	// do lists again
+	MyStack stack;
+
+	BSTSet tmp;
+		// iterate through YOUR stuff and for each thing, see if it exists in s
+		// add to temporary tree
+
+	TNode* T = root;
+
+	/*
+	while(T!=NULL || !stack.empty()){
+		while(T!=NULL){
+			stack.push_back(T);
+			T=T->left;
+		}
+
+		// T must be null at this point, meaning we take from stack
+		T = stack.back();
+		stack.pop_back();
+		if(s.isIn(T->element)==true){
+			// REMOVE
+			tmp.remove(T->element);
+		}
+
+		// traverse right tree
+		T=T->right;
+
+	}
+
+	// remove all elements that dont have a counterpart in the other and vice versa
+	// then union the remaining
+
+	//*this=tmp;
+	delete root;
+	root=tmp.root;
+	tmp.root=NULL;
+	*/
 
 }
 
